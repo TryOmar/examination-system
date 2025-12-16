@@ -1,0 +1,11 @@
+# Generated ERD files (keep source only)
+erd/*.png
+erd/*.svg
+!erd/*.mmd
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db

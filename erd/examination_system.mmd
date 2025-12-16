@@ -1,0 +1,141 @@
+erDiagram
+    Branch {
+        int branch_id PK
+        string branch_name
+        string location
+    }
+
+    Department {
+        int dept_id PK
+        string dept_name
+        int branch_id FK
+    }
+
+    Instructor {
+        int instructor_id PK
+        string name
+        string email
+        string phone
+        int dept_id FK
+    }
+
+    Student {
+        int student_id PK
+        string name
+        string email
+        string phone
+        int dept_id FK
+    }
+
+    Course {
+        int course_id PK
+        string course_name
+        string description
+        int dept_id FK
+    }
+
+    Topic {
+        int topic_id PK
+        string topic_name
+        int course_id FK
+    }
+
+    Enrollment {
+        int enrollment_id PK
+        int student_id FK
+        int course_id FK
+        date enrollment_date
+        decimal final_grade
+    }
+
+    Question {
+        int question_id PK
+        int course_id FK
+        string question_text
+        enum question_type
+        decimal grade
+        int difficulty_level
+        int model_answer_id FK
+    }
+
+    QuestionType {
+        int type_id PK
+        string type_name
+        string description
+    }
+
+    Choice {
+        int choice_id PK
+        int question_id FK
+        string choice_text
+        boolean is_correct
+    }
+
+    Exam {
+        int exam_id PK
+        string exam_name
+        int course_id FK
+        int num_true_false
+        int num_mcq
+        int total_questions
+        decimal total_grade
+        datetime created_date
+        datetime valid_from
+        datetime valid_to
+    }
+
+    ExamQuestion {
+        int exam_question_id PK
+        int exam_id FK
+        int question_id FK
+        int question_order
+    }
+
+    StudentExam {
+        int student_exam_id PK
+        int exam_id FK
+        int student_id FK
+        datetime start_time
+        datetime end_time
+        decimal obtained_grade
+        decimal percentage
+        string status
+    }
+
+    StudentAnswer {
+        int student_answer_id PK
+        int student_exam_id FK
+        int question_id FK
+        int selected_choice_id FK
+        boolean is_correct
+        decimal question_grade
+    }
+
+    InstructorCourse {
+        int instructor_course_id PK
+        int instructor_id FK
+        int course_id FK
+        string role
+    }
+
+    Branch ||--o{ Department : has
+    Department ||--o{ Instructor : contains
+    Department ||--o{ Student : contains
+    Department ||--o{ Course : offers
+    Course ||--o{ Topic : covers
+    Course ||--o{ Question : contains
+    QuestionType ||--o{ Question : categorizes
+    Question ||--o{ Choice : has
+    Question ||--o{ Choice : "correct answer"
+    Course ||--o{ Exam : has
+    Exam ||--o{ ExamQuestion : contains
+    Question ||--o{ ExamQuestion : "appears in"
+    Student ||--o{ StudentExam : takes
+    Exam ||--o{ StudentExam : "has attempts"
+    StudentExam ||--o{ StudentAnswer : contains
+    Question ||--o{ StudentAnswer : answered
+    Choice ||--o{ StudentAnswer : selected
+    Student ||--o{ Enrollment : enrolls_in
+    Course ||--o{ Enrollment : has_enrollments
+    Instructor ||--o{ InstructorCourse : teaches
+    Course ||--o{ InstructorCourse : taught_by
