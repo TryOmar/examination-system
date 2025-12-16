@@ -5,9 +5,9 @@
     "scripts": {
         "generate": "npm run generate:light && npm run generate:dark",
         "generate:light": "mmdc -i examination_system.mmd -o examination_system_light.png -c config-light.json -w 2000",
-        "generate:dark": "mmdc -i examination_system.mmd -o examination_system_dark.png -c config-dark.json -b #1a1a2e -w 2000",
+        "generate:dark": "mmdc -i examination_system.mmd -o examination_system_dark.png -c config-dark.json -b #000000 -w 2000",
         "generate:svg:light": "mmdc -i examination_system.mmd -o examination_system_light.svg -c config-light.json",
-        "generate:svg:dark": "mmdc -i examination_system.mmd -o examination_system_dark.svg -c config-dark.json -b #1a1a2e"
+        "generate:svg:dark": "mmdc -i examination_system.mmd -o examination_system_dark.svg -c config-dark.json -b #000000"
     },
     "devDependencies": {
         "@mermaid-js/mermaid-cli": "^11.4.2"
