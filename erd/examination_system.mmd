@@ -1,141 +1,156 @@
 erDiagram
     Branch {
         int branch_id PK
-        string branch_name
-        string location
+        varchar branch_name
+        varchar branch_city
     }
-
     Department {
-        int dept_id PK
-        string dept_name
-        int branch_id FK
+        int department_id PK
+        varchar department_name
     }
-
-    Instructor {
-        int instructor_id PK
-        string name
-        string email
-        string phone
-        int dept_id FK
-    }
-
-    Student {
-        int student_id PK
-        string name
-        string email
-        string phone
-        int dept_id FK
-    }
-
     Course {
         int course_id PK
-        string course_name
-        string description
-        int dept_id FK
+        int course_code
+        varchar description
+        varchar course_title
+        varchar credits
     }
-
     Topic {
         int topic_id PK
-        string topic_name
-        int course_id FK
+        int topic_order
+        varchar topic_duration
+        varchar topic_title
     }
-
-    Enrollment {
-        int enrollment_id PK
-        int student_id FK
-        int course_id FK
-        date enrollment_date
-        decimal final_grade
-    }
-
-    Question {
-        int question_id PK
-        int course_id FK
-        string question_text
-        enum question_type
-        decimal grade
-        int difficulty_level
-        int model_answer_id FK
-    }
-
-    QuestionType {
-        int type_id PK
-        string type_name
-        string description
-    }
-
-    Choice {
-        int choice_id PK
-        int question_id FK
-        string choice_text
-        boolean is_correct
-    }
-
     Exam {
         int exam_id PK
-        string exam_name
-        int course_id FK
-        int num_true_false
-        int num_mcq
-        int total_questions
-        decimal total_grade
-        datetime created_date
-        datetime valid_from
-        datetime valid_to
+        varchar exam_title
+        int total_grade
+        datetime exam_date
+        varchar exam_type
+        int duration_mins
     }
-
+    QuestionChoice {
+        int choice_id PK
+        varchar choice_text
+    }
+    Question {
+        int question_id PK
+        varchar question_text
+        varchar question_type
+        varchar question_difficulty
+        int correct_ans_id FK
+    }
+    Person {
+        int person_id PK
+        varchar first_name
+        varchar last_name
+        varchar email
+    }
+    Student {
+        int student_id PK,FK
+    }
+    Instructor {
+        int instructor_id PK,FK
+        date hire_date
+    }
+    
+    %% Junction Tables
+    BranchDepartment {
+        int branch_id PK,FK
+        int department_id PK,FK
+    }
+    DepartmentCourse {
+        int course_id PK,FK
+        int department_id PK,FK
+    }
     ExamQuestion {
-        int exam_question_id PK
-        int exam_id FK
-        int question_id FK
-        int question_order
+        int exam_id PK,FK
+        int question_id PK,FK
     }
-
+    QuestionChoiceBridge {
+        int question_id PK,FK
+        int choice_id PK,FK
+    }
     StudentExam {
-        int student_exam_id PK
-        int exam_id FK
-        int student_id FK
-        datetime start_time
-        datetime end_time
-        decimal obtained_grade
-        decimal percentage
-        string status
+        int student_id PK,FK
+        int exam_id PK,FK
+        varchar state
+        datetime exam_date
+        int grade
     }
-
-    StudentAnswer {
-        int student_answer_id PK
-        int student_exam_id FK
-        int question_id FK
-        int selected_choice_id FK
-        boolean is_correct
-        decimal question_grade
+    StudentCourse {
+        int student_id PK,FK
+        int course_id PK,FK
+        datetime enrollment_date
     }
-
     InstructorCourse {
-        int instructor_course_id PK
-        int instructor_id FK
-        int course_id FK
-        string role
+        int instructor_id PK,FK
+        int course_id PK,FK
+    }
+    PersonJoinDepartmentBranch {
+        int person_id PK,FK
+        int branch_id FK
+        int department_id FK
+        datetime join_date PK
+    }
+    InstructorGenerateCourseExam {
+        int instructor_id PK,FK
+        int exam_id FK
+        int course_id PK,FK
+        datetime generate_date PK
+    }
+    CourseQuestionTopic {
+        int course_id PK,FK
+        int question_id PK,FK
+        int topic_id PK,FK
+    }
+    StudentAnswerQuestion {
+        int student_id PK,FK
+        int exam_id FK
+        int question_id PK,FK
+        varchar student_answer
+        datetime answer_date PK
     }
 
-    Branch ||--o{ Department : has
-    Department ||--o{ Instructor : contains
-    Department ||--o{ Student : contains
-    Department ||--o{ Course : offers
-    Course ||--o{ Topic : covers
-    Course ||--o{ Question : contains
-    QuestionType ||--o{ Question : categorizes
-    Question ||--o{ Choice : has
-    Question ||--o{ Choice : "correct answer"
-    Course ||--o{ Exam : has
+    %% Relationships
+    Branch ||--o{ BranchDepartment : has
+    Department ||--o{ BranchDepartment : "belongs to"
+    
+    Department ||--o{ DepartmentCourse : offers
+    Course ||--o{ DepartmentCourse : "belongs to"
+
     Exam ||--o{ ExamQuestion : contains
-    Question ||--o{ ExamQuestion : "appears in"
+    Question ||--o{ ExamQuestion : "part of"
+
+    Question ||--o{ QuestionChoiceBridge : has
+    QuestionChoice ||--o{ QuestionChoiceBridge : "is option for"
+
+    Question ||--o| QuestionChoice : "correct answer"
+
+    Person ||--o| Student : is
+    Person ||--o| Instructor : is
+
     Student ||--o{ StudentExam : takes
-    Exam ||--o{ StudentExam : "has attempts"
-    StudentExam ||--o{ StudentAnswer : contains
-    Question ||--o{ StudentAnswer : answered
-    Choice ||--o{ StudentAnswer : selected
-    Student ||--o{ Enrollment : enrolls_in
-    Course ||--o{ Enrollment : has_enrollments
+    Exam ||--o{ StudentExam : "taken by"
+
+    Student ||--o{ StudentCourse : enrolls
+    Course ||--o{ StudentCourse : "enrolled by"
+
     Instructor ||--o{ InstructorCourse : teaches
-    Course ||--o{ InstructorCourse : taught_by
+    Course ||--o{ InstructorCourse : "taught by"
+
+    Person ||--o{ PersonJoinDepartmentBranch : joins
+    Branch ||--o{ PersonJoinDepartmentBranch : "staffed by"
+    Department ||--o{ PersonJoinDepartmentBranch : "staffed by"
+
+    Instructor ||--o{ InstructorGenerateCourseExam : generates
+    Exam ||--o{ InstructorGenerateCourseExam : generated
+    Course ||--o{ InstructorGenerateCourseExam : "for course"
+
+    Course ||--o{ CourseQuestionTopic : links
+    Question ||--o{ CourseQuestionTopic : links
+    Topic ||--o{ CourseQuestionTopic : links
+
+    Student ||--o{ StudentAnswerQuestion : answers
+    Exam ||--o{ StudentAnswerQuestion : "in exam"
+    Question ||--o{ StudentAnswerQuestion : "answers question"
