@@ -26,7 +26,7 @@ BEGIN
 
         SELECT @count = COUNT(*)
         FROM instructor_course
-        WHERE instructor_id = @instructor_id;
+        WHERE instructor_id = @instructor_id and course_id = @course_id;
 
         IF @count = 0
         BEGIN
