@@ -97,7 +97,7 @@ BEGIN
         );
 
         COMMIT TRANSACTION;
-        SELECT @exam_id AS exam_id;
+        return @exam_id ;
 
     END TRY
     BEGIN CATCH
