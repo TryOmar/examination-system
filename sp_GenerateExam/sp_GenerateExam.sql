@@ -5,7 +5,7 @@ CREATE TYPE QuestionsGroupNum AS TABLE
     questions_num INT
 );
 
-CREATE PROCEDURE sp_GenerateExam
+CREATE PROCEDURE GenerateExam
 (
     @Items QuestionsGroupNum READONLY,
     @course_id INT,

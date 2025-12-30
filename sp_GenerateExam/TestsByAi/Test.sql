@@ -4,7 +4,7 @@ DECLARE @Items QuestionsGroupNum;
 INSERT INTO @Items VALUES (1, 'MCQ', 2), (3, 'True_False', 1); 
 
 -- Total grade must be 3 because you have 3 questions total
-EXEC sp_GenerateExam 
+EXEC GenerateExam 
     @Items = @Items, 
     @course_id = 1, 
     @exam_title = 'Success Test Exam', 
@@ -25,7 +25,7 @@ DECLARE @Items QuestionsGroupNum;
 INSERT INTO @Items VALUES (1, 'MCQ', 1);
 
 BEGIN TRY
-    EXEC sp_GenerateExam 
+    EXEC GenerateExam 
         @Items = @Items, 
         @course_id = 1, 
         @exam_title = 'Unauthorized Instructor', 
@@ -44,7 +44,7 @@ DECLARE @Items QuestionsGroupNum;
 INSERT INTO @Items VALUES (1, 'MCQ', 3); -- Requesting 100 questions (none exist)
 
 BEGIN TRY
-    EXEC sp_GenerateExam 
+    EXEC GenerateExam 
         @Items = @Items, 
         @course_id = 1, 
         @exam_title = 'Too Many Questions', 
@@ -63,7 +63,7 @@ DECLARE @Items QuestionsGroupNum;
 INSERT INTO @Items VALUES (1, 'MCQ', 5); -- Requested 5 questions
 
 BEGIN TRY
-    EXEC sp_GenerateExam 
+    EXEC GenerateExam 
         @Items = @Items, 
         @course_id = 1, 
         @exam_title = 'Grade Mismatch', 
