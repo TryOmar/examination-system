@@ -109,6 +109,7 @@ BEGIN
         );
 
         COMMIT TRANSACTION;
+        SELECT @exam_id ;
         return @exam_id ;
 
     END TRY
