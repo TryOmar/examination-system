@@ -20,8 +20,20 @@ BEGIN
     SET NOCOUNT ON;
 
     BEGIN TRY
+
+
         BEGIN TRANSACTION;
         
+        DECLARE @sum INT
+        SELECT @sum = SUM(i.questions_num)
+        FROM @Items i;
+
+        IF @sum <> @total_grade
+        BEGIN
+            THROW 50001, 'Total grad not equal to number of questions', 1;
+        END;
+
+
         DECLARE @count INT;
 
         SELECT @count = COUNT(*)
