@@ -3,7 +3,7 @@ AS
 BEGIN
 	BEGIN TRY
 		BEGIN TRANSACTION
-			IF NOT EXISTS(SELECT * FROM department WHERE department_name = @name)
+			IF NOT EXISTS(SELECT * FROM department WHERE department_name = @name COLLATE SQL_Latin1_General_CP1_CI_AS)
 			BEGIN
 				INSERT INTO department(department_name)
 				VALUES(@name);
