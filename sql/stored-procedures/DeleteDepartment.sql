@@ -1,18 +1,17 @@
-CREATE PROCEDURE DeleteBranch(@id INT)
+CREATE PROCEDURE DeleteDepartment(@id INT)
 AS
 BEGIN
 	BEGIN TRY
 		BEGIN TRANSACTION
-			DELETE
+			DELETE 
 			FROM branch_department
-			WHERE branch_id = @id;
-
+			WHERE department_id = @id;
 			DELETE
-			FROM branch
-			WHERE branch_id = @id;
+			FROM department
+			WHERE department_id = @id;
 			IF @@ROWCOUNT = 0
 			BEGIN
-				DECLARE @error_message VARCHAR(50) = CONCAT('Sorry branch with id ', @id, ' does not exist!');
+				DECLARE @error_message VARCHAR(50) = CONCAT('Department with id ', @id, ' does not exist!');
 				THROW 50010, @error_message, 1;
 			END
 		COMMIT TRANSACTION;
@@ -24,4 +23,4 @@ BEGIN
 	END CATCH
 END
 
-EXEC DeleteBranch 3
+EXEC DeleteDepartment 1
