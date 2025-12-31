@@ -14,7 +14,7 @@ BEGIN
             END
             ELSE
             BEGIN
-                DECLARE @error_message VARCHAR(50) = 'Topic with ID ' + CAST(@topic_id AS VARCHAR(20)) + ' does not exist!';
+                DECLARE @error_message VARCHAR(100) = 'Topic with ID ' + CAST(@topic_id AS VARCHAR(20)) + ' does not exist!';
                 THROW 50006, @error_message, 1;
             END
         COMMIT TRANSACTION;

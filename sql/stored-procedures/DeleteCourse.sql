@@ -18,7 +18,7 @@ BEGIN
             END
             ELSE
             BEGIN
-                DECLARE @error_message VARCHAR(50) = 'Course with ID ' + CAST(@course_id AS VARCHAR(20)) + ' does not exist!';
+                DECLARE @error_message VARCHAR(100) = 'Course with ID ' + CAST(@course_id AS VARCHAR(20)) + ' does not exist!';
                 THROW 50004, @error_message, 1;
             END
         COMMIT TRANSACTION;
