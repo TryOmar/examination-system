@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE InsertTopic
+CREATE OR ALTER PROCEDURE AddTopic
     @topic_order INT,
     @topic_duration VARCHAR(255),
     @topic_title VARCHAR(255),

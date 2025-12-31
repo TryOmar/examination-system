@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE InsertCourse
+CREATE OR ALTER PROCEDURE AddCourse
     @course_code INT,
     @description VARCHAR(255),
     @course_title VARCHAR(255),
