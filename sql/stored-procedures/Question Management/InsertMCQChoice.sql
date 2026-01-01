@@ -20,6 +20,9 @@ BEGIN
     
     IF NOT EXISTS (SELECT 1 FROM question WHERE question_id = @QuestionID)
         RETURN -2;  -- Question not found
+
+    IF NOT EXISTS (SELECT 1 FROM question WHERE question_id = @QuestionID AND question_type = 'MCQ')
+        RETURN -3;  -- Wrong question type (not MCQ)
     
     
     BEGIN TRY
