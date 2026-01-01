@@ -22,7 +22,7 @@ CREATE TABLE [courses] (
 CREATE TABLE [topic] (
   [topic_id] int IDENTITY(1,1) PRIMARY KEY,
   [topic_order] int,
-  [topic_dration] varchar(255),
+  [topic_duration] varchar(255),
   [topic_title] varchar(255)
 );
 
