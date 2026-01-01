@@ -1,4 +1,3 @@
-
 CREATE PROCEDURE UpdateChoiceText
     @ChoiceID INT,
     @ChoiceText VARCHAR(255)
@@ -12,7 +11,7 @@ BEGIN
     IF @ChoiceText IS NULL OR LTRIM(RTRIM(@ChoiceText)) = ''
         RETURN -2;
 
-    IF NOT EXISTS (SELECT 1 FROM question_choice WHERE choice_id = @ChoiceID)
+    IF NOT EXISTS (SELECT 1 FROM quesiton_choice WHERE choice_id = @ChoiceID)
         RETURN -3;
 
     IF @ChoiceID IN (1, 2)
@@ -39,5 +38,3 @@ GO
 -- -3 : Choice not found
 -- -4 : Cannot update True/False choices (protected)
 -- -5 : Database error
-
-
