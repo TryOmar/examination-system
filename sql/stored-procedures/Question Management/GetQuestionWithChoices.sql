@@ -1,6 +1,7 @@
 
 CREATE PROCEDURE GetChoicesByQuestionId
     @QuestionID INT
+WITH ENCRYPTION
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -26,6 +27,7 @@ GO
 
 CREATE PROCEDURE GetQuestionWithChoices
     @QuestionID INT
+WITH ENCRYPTION
 AS
 BEGIN
     SET NOCOUNT ON;

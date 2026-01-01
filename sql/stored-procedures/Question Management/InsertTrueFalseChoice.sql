@@ -1,6 +1,7 @@
 CREATE PROCEDURE InsertTrueFalseChoices
     @QuestionID INT,
     @CorrectAnswer BIT  -- 1 = True is correct, 0 = False is correct
+WITH ENCRYPTION
 AS
 BEGIN
     SET NOCOUNT ON;

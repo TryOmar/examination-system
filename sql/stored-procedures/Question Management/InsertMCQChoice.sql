@@ -3,6 +3,7 @@ CREATE PROCEDURE InsertMCQChoice
     @ChoiceText VARCHAR(255),
     @IsCorrect BIT,
     @NewChoiceID INT OUTPUT
+WITH ENCRYPTION
 AS
 BEGIN
     SET NOCOUNT ON;
