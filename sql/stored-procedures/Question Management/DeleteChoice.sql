@@ -7,7 +7,14 @@ BEGIN
     IF @ChoiceID IS NULL
         RETURN -1;
 
-    IF @ChoiceID IN (1, 2)
+    DECLARE @TrueChoiceID INT;
+    DECLARE @FalseChoiceID INT;
+
+    SELECT @TrueChoiceID = choice_id FROM quesiton_choice WHERE LOWER(choice_text) = 'true';
+    SELECT @FalseChoiceID = choice_id FROM quesiton_choice WHERE LOWER(choice_text) = 'false';
+
+    IF (@TrueChoiceID IS NOT NULL AND @ChoiceID = @TrueChoiceID) OR
+       (@FalseChoiceID IS NOT NULL AND @ChoiceID = @FalseChoiceID)
         RETURN -2;
 
     IF NOT EXISTS (SELECT 1 FROM quesiton_choice WHERE choice_id = @ChoiceID)
