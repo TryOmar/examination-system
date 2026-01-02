@@ -50,7 +50,8 @@ GO
 -- -1 : Question ID is NULL
 -- -2 : No fields to update (both NULL)
 -- -3 : Question text is empty
--- -4 : Question not found
--- -5 : Database error
+-- -4 : Invalid difficulty (must be 'easy', 'medium', or 'hard')
+-- -5 : Question not found
+-- -6 : Database error
 
 
