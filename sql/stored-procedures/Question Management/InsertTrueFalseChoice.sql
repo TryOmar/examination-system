@@ -20,20 +20,29 @@ BEGIN
         RETURN -3;  -- Wrong question type
     
     BEGIN TRY
-        -- (1 = True, 2 = False)
+        -- Get True/False choice IDs dynamically from quesiton_choice
+        DECLARE @TrueChoiceID INT;
+        DECLARE @FalseChoiceID INT;
         DECLARE @CorrectChoiceID INT;
-        SET @CorrectChoiceID = CASE WHEN @CorrectAnswer = 1 THEN 1 ELSE 2 END;
-        
+
+        SELECT @TrueChoiceID = choice_id FROM quesiton_choice WHERE LOWER(choice_text) = 'true';
+        SELECT @FalseChoiceID = choice_id FROM quesiton_choice WHERE LOWER(choice_text) = 'false';
+
+        IF @TrueChoiceID IS NULL OR @FalseChoiceID IS NULL
+            RETURN -4; -- True/False choice entries missing
+
+        SET @CorrectChoiceID = CASE WHEN @CorrectAnswer = 1 THEN @TrueChoiceID ELSE @FalseChoiceID END;
+
         UPDATE question 
         SET correct_ans_id = @CorrectChoiceID
         WHERE question_id = @QuestionID;
-        
+
         INSERT INTO question_choise_bridge (question_id, choice_id)
-        VALUES (@QuestionID, 1);
-        
+        VALUES (@QuestionID, @TrueChoiceID);
+
         INSERT INTO question_choise_bridge (question_id, choice_id)
-        VALUES (@QuestionID, 2);
-        
+        VALUES (@QuestionID, @FalseChoiceID);
+
         RETURN 0;  -- Success
     END TRY
     BEGIN CATCH
