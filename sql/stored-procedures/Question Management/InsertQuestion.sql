@@ -3,6 +3,7 @@ CREATE PROCEDURE InsertQuestion
     @QuestionType VARCHAR(50),
     @QuestionDifficulty VARCHAR(50),
     @NewQuestionID INT OUTPUT
+WITH ENCRYPTION
 AS
 BEGIN
     SET NOCOUNT ON;
