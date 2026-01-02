@@ -13,19 +13,18 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM quesiton_choice WHERE choice_id = @ChoiceID)
         RETURN -3;
 
+
+    IF EXISTS (SELECT 1 FROM question WHERE correct_ans_id = @ChoiceID)
+        RETURN -5;
+        
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Step 1: Update questions that have this choice as correct answer
-        UPDATE question
-        SET correct_ans_id = NULL
-        WHERE correct_ans_id = @ChoiceID;
-
-        -- Step 2: Delete from bridge table
+        -- Step 1: Delete from bridge table
         DELETE FROM question_choise_bridge
         WHERE choice_id = @ChoiceID;
 
-        -- Step 3: Delete from choice table
+        -- Step 2: Delete from choice table
         DELETE FROM quesiton_choice
         WHERE choice_id = @ChoiceID;
 
