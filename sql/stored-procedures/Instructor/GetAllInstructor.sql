@@ -1,4 +1,5 @@
 CREATE PROCEDURE GetAllInstructors
+AS
 BEGIN
     SET NOCOUNT ON;
     
