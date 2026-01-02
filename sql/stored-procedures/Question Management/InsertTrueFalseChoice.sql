@@ -46,6 +46,15 @@ BEGIN
         RETURN 0;  -- Success
     END TRY
     BEGIN CATCH
-        RETURN -1;  -- Error
+        RETURN -5;  -- Database error
     END CATCH
 END
+GO
+
+-- Return Codes
+-- 0  : Success
+-- -1 : Invalid input (NULL parameters)
+-- -2 : Question not found
+-- -3 : Wrong question type (not True_False)
+-- -4 : True/False choice entries missing in database
+-- -5 : Database error

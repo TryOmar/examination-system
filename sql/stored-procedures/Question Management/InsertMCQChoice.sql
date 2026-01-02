@@ -27,6 +27,8 @@ BEGIN
     
     
     BEGIN TRY
+        BEGIN TRANSACTION;
+
         INSERT INTO quesiton_choice(choice_text)
         VALUES (LTRIM(RTRIM(@ChoiceText)));
       
@@ -41,10 +43,22 @@ BEGIN
         
         INSERT INTO question_choise_bridge(question_id, choice_id)
         VALUES (@QuestionID, @NewChoiceID);
+
+        COMMIT TRANSACTION;
         
         RETURN 0;  
     END TRY
     BEGIN CATCH
-        RETURN -1;
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        RETURN -4;  -- Database error
     END CATCH
 END
+GO
+
+-- Return Codes
+-- 0  : Success
+-- -1 : Invalid input (NULL or empty parameters)
+-- -2 : Question not found
+-- -3 : Wrong question type (not MCQ)
+-- -4 : Database error
