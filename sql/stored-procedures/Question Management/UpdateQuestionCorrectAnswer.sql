@@ -22,7 +22,16 @@ BEGIN
 
     IF @QuestionType = 'True_False'
     BEGIN
-        IF @NewCorrectChoiceID NOT IN (1, 2)
+        DECLARE @TrueChoiceID INT;
+        DECLARE @FalseChoiceID INT;
+
+        SELECT @TrueChoiceID = choice_id FROM quesiton_choice WHERE LOWER(choice_text) = 'true';
+        SELECT @FalseChoiceID = choice_id FROM quesiton_choice WHERE LOWER(choice_text) = 'false';
+
+        IF @TrueChoiceID IS NULL OR @FalseChoiceID IS NULL
+            RETURN -4; -- True/False choice entries missing or not configured
+
+        IF @NewCorrectChoiceID <> @TrueChoiceID AND @NewCorrectChoiceID <> @FalseChoiceID
             RETURN -4;
     END
     ELSE IF @QuestionType = 'MCQ'
