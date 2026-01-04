@@ -9,3 +9,40 @@ node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+
+
+# ========================
+# Visual Studio IDE files
+# ========================
+.vs/
+*.suo
+*.rsuser
+*.user
+*.userosscache
+*.slnx
+
+# ========================
+# Build output
+# ========================
+bin/
+obj/
+Debug/
+Release/
+
+# ========================
+# Report Project generated files
+# ========================
+*.rdl.data
+build.obj
+
+# ========================
+# Temporary / cache files
+# ========================
+*.vsidx
+FileContentIndex/
+
+# ========================
+# OS junk
+# ========================
+.DS_Store
+Thumbs.db
