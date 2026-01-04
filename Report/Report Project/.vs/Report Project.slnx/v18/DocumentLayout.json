@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28BDB4E2-5B54-A4C5-FECE-B50FE102C7E3}|Report Project\\Report Project.rptproj|D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\Report Project\\Report1.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}",
-      "RelativeMoniker": "D:0:0:{28BDB4E2-5B54-A4C5-FECE-B50FE102C7E3}|Report Project\\Report Project.rptproj|solutionrelative:Report Project\\Report1.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
+      "AbsoluteMoniker": "D:0:0:{28BDB4E2-5B54-A4C5-FECE-B50FE102C7E3}|Report Project\\Report Project.rptproj|D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\Report Project\\ExampReport.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}",
+      "RelativeMoniker": "D:0:0:{28BDB4E2-5B54-A4C5-FECE-B50FE102C7E3}|Report Project\\Report Project.rptproj|solutionrelative:Report Project\\ExampReport.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,11 +19,11 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Report1.rdl [Design]",
-              "DocumentMoniker": "D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\Report Project\\Report1.rdl",
-              "RelativeDocumentMoniker": "Report Project\\Report1.rdl",
-              "ToolTip": "D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\Report Project\\Report1.rdl [Design]",
-              "RelativeToolTip": "Report Project\\Report1.rdl [Design]",
+              "Title": "ExampReport.rdl [Design]",
+              "DocumentMoniker": "D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\Report Project\\ExampReport.rdl",
+              "RelativeDocumentMoniker": "Report Project\\ExampReport.rdl",
+              "ToolTip": "D:\\study\\ITI\\ADB\\Project\\examination-system\\Report\\Report Project\\Report Project\\ExampReport.rdl [Design]",
+              "RelativeToolTip": "Report Project\\ExampReport.rdl [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-01-04T07:03:17.484Z",
               "EditorCaption": " [Design]"
