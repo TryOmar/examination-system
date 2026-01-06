@@ -1,10 +1,10 @@
-# Generated ERD files (keep source only)
-erd/*.png
-erd/*.svg
-!erd/*.mmd
-
 # Node modules
 node_modules/
+tools/erd-generator/node_modules/
+
+# Generated ERD files (keep source only in tools/erd-generator)
+docs/erd/*.png
+docs/erd/*.svg
 
 # OS files
 .DS_Store
