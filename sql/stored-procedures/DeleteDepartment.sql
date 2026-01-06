@@ -9,8 +9,10 @@ BEGIN
 			DELETE FROM branch_department
 			WHERE department_id = @id;
 
-			DELETE FROM person_jong_department_branch
-			WHERE department_id = @id;
+			DELETE FROM 
+			person_jong_department_branch
+			WHERE department_id = @id AND person_id IN 
+			(SELECT student_id FROM student);
 			
 			DELETE FROM department
 			WHERE department_id = @id;
