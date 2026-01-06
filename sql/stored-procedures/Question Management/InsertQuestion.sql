@@ -48,7 +48,7 @@ DECLARE @QuestionId INT;
 
 EXECUTE InsertQuestion 
     @QuestionText = 'What is 1+1?',
-    @QuestionType = 'MCQa',
+    @QuestionType = 'MCQ',
     @QuestionDifficulty = 'easy',
     @NewQuestionID = @QuestionId OUTPUT;
 
