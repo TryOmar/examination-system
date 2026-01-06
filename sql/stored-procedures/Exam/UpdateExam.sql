@@ -35,6 +35,18 @@ BEGIN
         RETURN -3;
     END
 
+    -- Check if exam has already ended (prevent updates to completed exams)
+    DECLARE @ExamEndTime DATETIME;
+    SELECT @ExamEndTime = DATEADD(MINUTE, duration_mins, exam_date)
+    FROM exam
+    WHERE exam_id = @ExamID;
+
+    IF GETDATE() > @ExamEndTime
+    BEGIN
+        RAISERROR('Cannot update exam that has already ended. Students may have completed it.', 16, 1);
+        RETURN -7;
+    END
+
     -- Validate exam type if provided
     IF @ExamType IS NOT NULL AND @ExamType NOT IN ('final', 'mid', 'semifinal')
     BEGIN
@@ -78,3 +90,4 @@ GO
 -- -4 : Invalid exam type
 -- -5 : Invalid duration
 -- -6 : Database error
+-- -7 : Exam has already ended (cannot update completed exams)
