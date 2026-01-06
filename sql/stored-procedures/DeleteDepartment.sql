@@ -3,17 +3,17 @@ AS
 BEGIN
 	BEGIN TRY
 		BEGIN TRANSACTION
-			DELETE 
-			FROM branch_department
+			DELETE FROM department_courses
 			WHERE department_id = @id;
-			DELETE
-			FROM department
+
+			DELETE FROM branch_department
 			WHERE department_id = @id;
-			IF @@ROWCOUNT = 0
-			BEGIN
-				DECLARE @error_message VARCHAR(50) = CONCAT('Department with id ', @id, ' does not exist!');
-				THROW 50010, @error_message, 1;
-			END
+
+			DELETE FROM person_jong_department_branch
+			WHERE department_id = @id;
+			
+			DELETE FROM department
+			WHERE department_id = @id;
 		COMMIT TRANSACTION;
 	END TRY
 	BEGIN CATCH
@@ -22,5 +22,3 @@ BEGIN
 		THROW;
 	END CATCH
 END
-
-EXEC DeleteDepartment 1
