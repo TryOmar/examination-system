@@ -6,58 +6,27 @@ A comprehensive database-driven examination system built with SQL Server, featur
 
 ```
 examination-system/
-├── docs/
-│   ├── CODE_REVIEW_REPORT.md     # Code review findings
-│   ├── REQUIREMENTS.md            # Project requirements
-│   ├── use-cases/                 # Use case documentation
-│   │   ├── course/                # Course-related use cases
-│   │   ├── exam/                  # Exam-related use cases
-│   │   ├── insert-question/       # Question insertion workflows
-│   │   └── question-management/   # Question management use cases
-│   └── erd/                       # Entity Relationship Diagrams
-│       ├── README.md              # ERD documentation
-│       ├── examination_system.mmd # Mermaid ERD source
-│       ├── examination_system_dark.png
-│       └── examination_system_light.png
+├── docs/                          # 📚 Documentation
+│   ├── use-cases/                 # Use case specifications
+│   └── erd/                       # Entity relationship diagrams
 │
-└── sql/
-    ├── schema/
-    │   └── schema.sql             # Database tables and constraints
-    │
-    ├── stored-procedures/         # Organized by domain
-    │   ├── course/                # Course management
-    │   ├── exam/                  # Exam operations
-    │   ├── instructor/            # Instructor management
-    │   ├── student/               # Student management
-    │   ├── question-management/   # Question CRUD operations
-    │   ├── sp_GenerateExam.sql    # Automated exam generation
-    │   ├── sp_CorrectExam.sql     # Exam correction logic
-    │   └── sp_StudentSubmitAnswers.sql
-    │
-    ├── reports/                   # Report definitions (SQL + docs + tests)
-    │   ├── course-topics/         # Course topics report
-    │   │   ├── GetCourseTopics.sql
-    │   │   ├── GetCourseTopics.md
-    │   │   └── test-GetCourseTopics.sql
-    │   ├── student-exam/          # Student exam reports
-    │   │   ├── GetStudentExam.rdl
-    │   │   ├── ExamReport.rdl
-    │   │   ├── ExamReport.pdf
-    │   │   └── test-GetStudentExam.sql
-    │   └── student/               # Student-related reports
-    │       ├── courses-grade/
-    │       │   └── StudentCourseGradesReport.rdl
-    │       └── by-department/
-    │           └── StudentsByDepartmentReport.rdl
-    │
-    ├── tests/                     # General test scripts
-    │   ├── exam-generation-test.sql
-    │   ├── sp_CorrectExam-test.sql
-    │   └── sp_StudentSubmitAnswers-test.sql
-    │
-    └── seed-data/                 # Sample data for testing
-        └── sample-data.sql
+└── sql/                           # 🗄️ Database
+    ├── schema/                    # Database tables and constraints
+    ├── stored-procedures/         # Business logic (organized by domain)
+    ├── reports/                   # Report definitions with docs and tests
+    ├── tests/                     # Test scripts
+    └── seed-data/                 # Sample data for development
 ```
+
+### Key Directories
+
+- **`docs/use-cases/`** - Detailed use case documentation organized by feature (course, exam, question management)
+- **`docs/erd/`** - Database entity relationship diagrams (Mermaid source + PNG exports)
+- **`sql/schema/`** - Complete database schema definition
+- **`sql/stored-procedures/`** - Organized by domain: course, exam, student, instructor, question-management
+- **`sql/reports/`** - Each report has its SQL, documentation, tests, and .rdl files together
+- **`sql/tests/`** - Integration and general test scripts
+- **`sql/seed-data/`** - Sample data for testing and development
 
 ## ✨ Key Features
 
