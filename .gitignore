@@ -1,8 +1,7 @@
 # Node modules
 node_modules/
-tools/erd-generator/node_modules/
 
-# Generated ERD files (keep source only in tools/erd-generator)
+# Generated ERD files (keep source only)
 docs/erd/*.png
 docs/erd/*.svg
 

@@ -51,33 +51,31 @@ examination-system/
 examination-system/
 ├── docs/
 │   ├── use-cases/                   ✅ Consistent naming
-│   └── erd/                         ✅ Only documentation
+│   └── erd/                         ✅ Documentation and diagrams
 │       ├── README.md
 │       ├── examination_system_dark.png
-│       └── examination_system_light.png
-├── sql/
-│   └── reports/                     ✅ Unified location
-│       ├── course-topics/           ✅ All files together
-│       │   ├── GetCourseTopics.sql
-│       │   ├── GetCourseTopics.md
-│       │   └── test-GetCourseTopics.sql
-│       ├── student-exam/
-│       │   ├── GetStudentExam.rdl
-│       │   ├── ExamReport.rdl
-│       │   ├── ExamReport.pdf
-│       │   └── test-GetStudentExam.sql
-│       └── student/
-│           ├── courses-grade/
-│           │   └── StudentCourseGradesReport.rdl
-│           └── by-department/
-│               └── StudentsByDepartmentReport.rdl
-└── tools/                           ✅ NEW: Separated tooling
-    └── erd-generator/
-        ├── package.json
-        ├── package-lock.json
-        ├── config-dark.json
-        ├── config-light.json
-        └── examination_system.mmd
+│       ├── examination_system_light.png
+│       ├── examination_system.mmd
+│       ├── package.json
+│       ├── package-lock.json
+│       ├── config-dark.json
+│       └── config-light.json
+└── sql/
+    └── reports/                     ✅ Unified location
+        ├── course-topics/           ✅ All files together
+        │   ├── GetCourseTopics.sql
+        │   ├── GetCourseTopics.md
+        │   └── test-GetCourseTopics.sql
+        ├── student-exam/
+        │   ├── GetStudentExam.rdl
+        │   ├── ExamReport.rdl
+        │   ├── ExamReport.pdf
+        │   └── test-GetStudentExam.sql
+        └── student/
+            ├── courses-grade/
+            │   └── StudentCourseGradesReport.rdl
+            └── by-department/
+                └── StudentsByDepartmentReport.rdl
 ```
 
 ---
@@ -119,25 +117,7 @@ examination-system/
 + sql/reports/student/by-department/StudentsByDepartmentReport.rdl
 ```
 
-### 2. **ERD Tooling Separation**
-- **Action:** Created `tools/erd-generator/` and moved all tooling files
-- **Benefit:** Clear separation between documentation and build tools
-- **Files moved:** 5 files
-
-```diff
-- docs/erd/package.json
-- docs/erd/package-lock.json
-- docs/erd/config-dark.json
-- docs/erd/config-light.json
-- docs/erd/examination_system.mmd
-+ tools/erd-generator/package.json
-+ tools/erd-generator/package-lock.json
-+ tools/erd-generator/config-dark.json
-+ tools/erd-generator/config-light.json
-+ tools/erd-generator/examination_system.mmd
-```
-
-### 3. **Cleanup**
+### 2. **Cleanup**
 - **Deleted:**
   - `Report/` directory (entire directory)
   - `scripts/` directory (empty)
@@ -145,7 +125,7 @@ examination-system/
   - `docs/erd/node_modules/` directory
   - `Report Project.rptproj` file (obsolete)
 
-### 4. **Updated .gitignore**
+### 3. **Updated .gitignore**
 ```diff
 - # Generated ERD files (keep source only)
 - erd/*.png
@@ -154,9 +134,8 @@ examination-system/
 -
   # Node modules
   node_modules/
-+ tools/erd-generator/node_modules/
 +
-+ # Generated ERD files (keep source only in tools/erd-generator)
++ # Generated ERD files (keep source only)
 + docs/erd/*.png
 + docs/erd/*.svg
 ```
@@ -170,18 +149,17 @@ examination-system/
 | **Report Locations** | 2 separate | 1 unified | ✅ Single source of truth |
 | **GetCourseTopics Files** | 3 locations | 1 location | ✅ Co-located related files |
 | **Empty Directories** | 4 | 0 | ✅ Cleaner structure |
-| **Tooling in Docs** | Yes | No | ✅ Separation of concerns |
 | **Naming Consistency** | Mixed | Standardized | ✅ Professional & predictable |
 
 ---
 
 ## 📈 Statistics
 
-- **Files Moved:** 15
+- **Files Moved:** 10
 - **Files Deleted:** 1
-- **Directories Created:** 4
+- **Directories Created:** 3
 - **Directories Removed:** 3
-- **Lines Changed in .gitignore:** 5 insertions, 60 deletions
+- **Lines Changed in .gitignore:** 2 insertions, 4 deletions
 
 ---
 
@@ -220,15 +198,10 @@ examination-system/
   - `test-[ReportName].sql` - Test data
   - `[ReportName].rdl` - Report definition (optional)
 
-### For Tools:
-- **Location:** `tools/[tool-name]/`
-- **Purpose:** Build tools, generators, utilities
-- **Note:** Keep separate from documentation
-
 ### For Documentation:
 - **Location:** `docs/[category]/`
 - **Purpose:** Only documentation, diagrams, and guides
-- **Note:** No build artifacts or tooling
+- **Note:** ERD source files and tooling configs can stay in docs/erd/ for now
 
 ---
 
