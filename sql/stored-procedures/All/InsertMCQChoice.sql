@@ -1,0 +1,64 @@
+CREATE PROCEDURE InsertMCQChoice
+    @QuestionID INT,
+    @ChoiceText VARCHAR(255),
+    @IsCorrect BIT,
+    @NewChoiceID INT OUTPUT
+WITH ENCRYPTION
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET @NewChoiceID = NULL;
+    
+    
+    IF @QuestionID IS NULL
+        RETURN -1;
+    
+    IF @ChoiceText IS NULL OR LTRIM(RTRIM(@ChoiceText)) = ''
+        RETURN -1;
+    
+    IF @IsCorrect IS NULL
+        RETURN -1;
+    
+    IF NOT EXISTS (SELECT 1 FROM question WHERE question_id = @QuestionID)
+        RETURN -2;  -- Question not found
+
+    IF NOT EXISTS (SELECT 1 FROM question WHERE question_id = @QuestionID AND question_type = 'MCQ')
+        RETURN -3;  -- Wrong question type (not MCQ)
+    
+    
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        INSERT INTO quesiton_choice(choice_text)
+        VALUES (LTRIM(RTRIM(@ChoiceText)));
+      
+        SET @NewChoiceID = SCOPE_IDENTITY();
+        
+        IF @IsCorrect = 1
+        BEGIN
+            UPDATE question 
+            SET correct_ans_id = @NewChoiceID
+            WHERE question_id = @QuestionID;
+        END
+        
+        INSERT INTO question_choise_bridge(question_id, choice_id)
+        VALUES (@QuestionID, @NewChoiceID);
+
+        COMMIT TRANSACTION;
+        
+        RETURN 0;  
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        RETURN -4;  -- Database error
+    END CATCH
+END
+GO
+
+-- Return Codes
+-- 0  : Success
+-- -1 : Invalid input (NULL or empty parameters)
+-- -2 : Question not found
+-- -3 : Wrong question type (not MCQ)
+-- -4 : Database error
