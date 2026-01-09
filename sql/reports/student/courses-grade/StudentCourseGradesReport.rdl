@@ -11,17 +11,17 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-01-06T19:18:14.0324288Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-01-09T17:18:55.9928981Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="dtsExaminationSystem">
-      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=DESKTOP-77D4NOO;Initial Catalog=examination_system</ConnectString>
-        <IntegratedSecurity>true</IntegratedSecurity>
+        <ConnectString>Data Source=db37500.public.databaseasp.net;Initial Catalog=db37500;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True</ConnectString>
+        <Prompt>Specify a user name and password for data source dtsExaminationSystem:</Prompt>
       </ConnectionProperties>
       <rd:DataSourceID>97e4b50f-37e9-4e2c-a244-69d3402576d4</rd:DataSourceID>
     </DataSource>
@@ -47,8 +47,7 @@ ON ice.course_id = c.course_id
 JOIN 
 exam e
 ON se.exam_id = e.exam_id
-WHERE se.student_id = @student_id AND se.grade IS NOT NULL;
-</CommandText>
+WHERE se.student_id = @student_id AND se.grade IS NOT NULL;</CommandText>
       </Query>
       <Fields>
         <Field Name="course_title">
@@ -496,8 +495,8 @@ WHERE se.student_id = @student_id AND se.grade IS NOT NULL;
             </TablixRowHierarchy>
             <DataSetName>dtsStudentCourseGrades</DataSetName>
             <Top>0.91611in</Top>
-            <Left>0.182in</Left>
-            <Height>0.70833in</Height>
+            <Left>0.67865in</Left>
+            <Height>0.70834in</Height>
             <Width>5.91668in</Width>
             <Style>
               <Border>
@@ -513,7 +512,7 @@ WHERE se.student_id = @student_id AND se.grade IS NOT NULL;
           </Border>
         </Style>
       </Body>
-      <Width>7.237in</Width>
+      <Width>19cm</Width>
       <Page>
         <PageHeader>
           <Height>2.41389in</Height>
@@ -581,7 +580,7 @@ Generated on: </Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.125in</Top>
-              <Left>0.25in</Left>
+              <Left>0.5in</Left>
               <Height>1.32222in</Height>
               <Width>4.15833in</Width>
               <Style>
@@ -598,7 +597,7 @@ Generated on: </Value>
               <Source>Embedded</Source>
               <Value>WhatsAppImage20260106at22221PM</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>4.94867in</Left>
+              <Left>5.32367in</Left>
               <Height>1.70833in</Height>
               <Width>1.74667in</Width>
               <ZIndex>1</ZIndex>
@@ -628,7 +627,7 @@ Generated on: </Value>
                 </Paragraph>
               </Paragraphs>
               <Top>1.08in</Top>
-              <Left>1.44667in</Left>
+              <Left>1.69667in</Left>
               <Height>0.36722in</Height>
               <Width>2.26533in</Width>
               <ZIndex>2</ZIndex>
@@ -670,7 +669,7 @@ Generated on: </Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.2in</Top>
-              <Left>2.91033in</Left>
+              <Left>3.28533in</Left>
               <Height>0.25in</Height>
               <Width>1in</Width>
               <Style>
@@ -690,8 +689,9 @@ Generated on: </Value>
             </Border>
           </Style>
         </PageFooter>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>1cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
         <TopMargin>1in</TopMargin>
         <BottomMargin>1in</BottomMargin>
         <Style />
