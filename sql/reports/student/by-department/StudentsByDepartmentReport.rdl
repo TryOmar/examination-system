@@ -11,19 +11,19 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-01-06T11:05:01.3900482Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-01-09T16:58:30.9436030Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="dtsExaminationSystem">
-      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=DESKTOP-77D4NOO;Initial Catalog=examination_system</ConnectString>
-        <IntegratedSecurity>true</IntegratedSecurity>
+        <ConnectString>Data Source=db37500.public.databaseasp.net;Initial Catalog=db37500;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True</ConnectString>
+        <Prompt>Specify a user name and password for data source dtsExaminationSystem:</Prompt>
       </ConnectionProperties>
-      <rd:DataSourceID>97e4b50f-37e9-4e2c-a244-69d3402576d4</rd:DataSourceID>
+      <rd:DataSourceID>518924a2-5a4d-4b47-ade0-60bc6fa11c5a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -520,9 +520,9 @@ WHERE
             </TablixRowHierarchy>
             <DataSetName>dtsStudentsByDepartment</DataSetName>
             <Top>0.61333in</Top>
-            <Left>0.182in</Left>
+            <Left>0.682in</Left>
             <Height>0.875in</Height>
-            <Width>6.04167in</Width>
+            <Width>6.04168in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -530,17 +530,17 @@ WHERE
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.75833in</Height>
+        <Height>3.65833in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>7.237in</Width>
+      <Width>19cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.41389in</Height>
+          <Height>1.73889in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -605,7 +605,7 @@ Generated on: </Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.125in</Top>
-              <Left>0.25in</Left>
+              <Left>0.625in</Left>
               <Height>1.32222in</Height>
               <Width>4.15833in</Width>
               <Style>
@@ -622,7 +622,7 @@ Generated on: </Value>
               <Source>Embedded</Source>
               <Value>WhatsAppImage20260106at22221PM</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>4.94867in</Left>
+              <Left>5.32367in</Left>
               <Height>1.70833in</Height>
               <Width>1.74667in</Width>
               <ZIndex>1</ZIndex>
@@ -694,7 +694,7 @@ Generated on: </Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.2in</Top>
-              <Left>2.91033in</Left>
+              <Left>3.28533in</Left>
               <Height>0.25in</Height>
               <Width>1in</Width>
               <Style>
@@ -714,8 +714,11 @@ Generated on: </Value>
             </Border>
           </Style>
         </PageFooter>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
+        <PageWidth>21cm</PageWidth>
+        <InteractiveHeight>11in</InteractiveHeight>
+        <InteractiveWidth>8.5in</InteractiveWidth>
+        <LeftMargin>1cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
         <TopMargin>1in</TopMargin>
         <BottomMargin>1in</BottomMargin>
         <Style />
